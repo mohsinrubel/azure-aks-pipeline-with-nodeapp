@@ -22,7 +22,7 @@ docker compose up -d
 * create azure **res group** ,azure devops org and upload this project to ``` devops repo - > aks -> container registry ```
 * go to you created project in azure devops -> go into the project setting (bottom left)
 * setup the connection service (AKS , container registry)
-### aks / k8s setting
+### aks setup
 * create a service account and create a secret by follow commands:
 ``` kubectl create serviceaccount {serviceAccountName} ```
 * create a secret for the serviceaccount and apply the secret into your created serviceAccount.
