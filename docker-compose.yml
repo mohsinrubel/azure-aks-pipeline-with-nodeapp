@@ -1,0 +1,10 @@
+version: '3'
+services:
+  nodeapp-project:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: portfolio-project
+    container_name: nodeapp-project
+    ports:
+      - "8000:8091"
