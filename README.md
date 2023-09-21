@@ -2,26 +2,36 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.1.
 
-## Development server
+## my-app
+run in local env 
+* commands :
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+```
+npm install 
+npm start
+```
+* now you can see a sample app in your localhost : 8091 port
+### run in azure devops
+create azure **res group** ,azure devops org and upload this project to ``` devops repo - > aks -> container registry ```
+go to you created project in azure devops -> go into the project setting (bottom left)
+setup the connection service (AKS , container registry)
+### aks / k8s setting
+(remark) becauase of k8s after 1.24 update, the service account would not auto create a secret for it,you need to create it by youself 
+* create a service account and create a secret by follow commands:
+``` kubectl create serviceaccount {serviceAccountName} ```
+* create a secret for the serviceaccount and apply the secret into your created serviceAccount.
+```
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {secretName}
+  annotations:
+    kubernetes.io/service-account.name: {serviceAccountName}
+type: kubernetes.io/service-account-token
+EOF
+```
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* create the enviorment / pipline using yaml file setting.
+select the container registry & choose the build and push image as action.
+deploy to AKS service , enter the pod details 
