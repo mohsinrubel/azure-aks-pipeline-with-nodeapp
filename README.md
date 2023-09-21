@@ -18,10 +18,10 @@ npm start
 docker compose up -d
 ```
 * now you can see a sample app in your localhost : 8000 port
-### run in azure devops
-create azure **res group** ,azure devops org and upload this project to ``` devops repo - > aks -> container registry ```
-go to you created project in azure devops -> go into the project setting (bottom left)
-setup the connection service (AKS , container registry)
+### azure devops setup
+* create azure **res group** ,azure devops org and upload this project to ``` devops repo - > aks -> container registry ```
+* go to you created project in azure devops -> go into the project setting (bottom left)
+* setup the connection service (AKS , container registry)
 ### aks / k8s setting
 * create a service account and create a secret by follow commands:
 ``` kubectl create serviceaccount {serviceAccountName} ```
@@ -39,5 +39,5 @@ EOF
 ```
 
 * create the enviorment / pipline using yaml file setting.
-select the **ecr container registry** & choose the build and push image as action.
-deploy to AKS service , enter the pod details 
+* select the **ecr container registry** & choose the build and push image as action.
+* deploy to AKS service , enter the pod details 
