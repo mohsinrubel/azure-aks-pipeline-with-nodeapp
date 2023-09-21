@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-firstgame
+spec:
+  selector:
+    matchLabels:
+      app: front-firstgame
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: front-firstgame
+    spec:
+      containers:
+      - name: front-firstgame
+        image: your-registry/your-image:your-tag
+        ports:
+        - containerPort: 80
